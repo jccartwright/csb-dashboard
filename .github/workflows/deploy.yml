@@ -1,4 +1,4 @@
-name: Deploy
+name: Build and Deploy
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Build and Deploy
     runs-on: ubuntu-latest
 
     steps:
@@ -18,10 +18,13 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - run: npm ci
-      - run: npm run build
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
+          branch: gh-pages
           folder: dist
-        
+          
