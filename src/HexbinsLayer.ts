@@ -84,7 +84,9 @@ function formatPopupContent(feature: Feature) {
 }
 
 // WARNING: mutates the provided geometry
+// TODO fix TypeScript errors
 function translateGraphic(graphic:Graphic) {
+  // @ts-ignore
   const shifted_rings = []
 
   const polygon = graphic.geometry as Polygon
@@ -99,5 +101,6 @@ function translateGraphic(graphic:Graphic) {
           shifted_rings.push(pair)
       }
   })
+  // @ts-ignore
   polygon.rings = [shifted_rings]
 }
