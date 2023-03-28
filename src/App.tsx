@@ -32,7 +32,7 @@ function App() {
     <div className="App">
       <HeaderPanel></HeaderPanel>
       <SidePanel></SidePanel>
-      <MapPanel hexbins={(summaryData) ? summaryData['counts_by_h3'] : null}></MapPanel>
+      <MapPanel hexbins={(summaryData) ? summaryData['counts_by_h3']:[]}></MapPanel>
       <LineGraphPanel></LineGraphPanel>
       <FooterPanel></FooterPanel>
     </div>
