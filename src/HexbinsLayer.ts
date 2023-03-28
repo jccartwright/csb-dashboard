@@ -4,11 +4,8 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer"
 import Polygon from "@arcgis/core/geometry/Polygon"
 import PopupTemplate from "@arcgis/core/PopupTemplate"
 import {cellToBoundary} from "h3-js"
+import { hexbinData } from "./types"
 
-type hexbinData = {
-  count: number,
-  h3: string
-}
 
 export default function HexbinsLayer(graphicsLayer:GraphicsLayer, hexbins:Array<hexbinData>) {
   const hexbinBoundaryWidth = 0
