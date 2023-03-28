@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@arcgis/core": "^4.26.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.11.14",
+    "h3-js": "^4.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

@@ -26,13 +26,6 @@
 
 }
 
-.MapPanel {
-  grid-area: map;
-  /* border: 2px black solid; */
-  /* background-color: white; */
-  /* padding-right: 10px; */
-}
-
 .LineGraphPanel {
   grid-area: linegraph;
   /* border: 2px black solid; */

@@ -1,0 +1,6 @@
+.MapPanel {
+  grid-area: map;
+  /* border: 2px black solid; */
+  /* background-color: white; */
+  /* padding-right: 10px; */
+}

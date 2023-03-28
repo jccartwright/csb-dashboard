@@ -1,16 +1,38 @@
-import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
+import MapPanel from './MapPanel'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState(false);
+  const [summaryData, setSummaryData] = useState(null);
+
+  // one-time setup
+  useEffect(() => {
+    const abortController = new AbortController();
+   
+    setIsLoading(true);
+    // TODO better handling of errors fetching JSON files
+    Promise.all([
+     fetch('https://order-pickup.s3.amazonaws.com/csb_statistics.json', { signal: abortController.signal }).then(response => response.json()),
+     fetch('https://order-pickup.s3.amazonaws.com/csb_counts_by_h3.json', { signal: abortController.signal }).then(response => response.json())
+    ]).then(responses => {
+      setSummaryData(Object.assign(responses[0], responses[1]))
+    }).finally(() => {
+      setIsLoading(false);
+    }) 
+    // abort any request running at time component unmounts
+    return () => {
+      abortController.abort();
+    };
+  }, []);
 
   return (
     <div className="App">
       <HeaderPanel></HeaderPanel>
       <SidePanel></SidePanel>
-      <MapPanel></MapPanel>
+      <MapPanel hexbins={(summaryData) ? summaryData['counts_by_h3'] : null}></MapPanel>
       <LineGraphPanel></LineGraphPanel>
       <FooterPanel></FooterPanel>
     </div>
@@ -35,16 +57,6 @@ function SidePanel() {
   return (
     <div className={baseClass}>
       <h2>SIDEPANEL</h2>
-    </div>
-  )
-}
-
-function MapPanel() {
-  const baseClass = 'MapPanel'
-  
-  return (
-    <div className={baseClass}>
-      <h2>MAPPANEL</h2>
     </div>
   )
 }
