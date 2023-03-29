@@ -5,9 +5,9 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer";
 import CoordinateConversion from "@arcgis/core/widgets/CoordinateConversion.js"
 import './MapPanel.css'
 import HexbinsLayer from "./HexbinsLayer"
-import { hexbinData } from "./types"
+import { HexbinDataType } from "./types"
 
-export default function MapPanel({hexbins}:{hexbins: hexbinData[]}) {
+export default function MapPanel({hexbins}:{hexbins: HexbinDataType[]}) {
   const baseClass = 'MapPanel'
   const mapDiv = useRef<HTMLDivElement>(null)
   const mapViewRef = useRef<SceneView>()

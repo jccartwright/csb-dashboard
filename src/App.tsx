@@ -3,10 +3,13 @@ import viteLogo from '/vite.svg'
 import MapPanel from './MapPanel'
 import { useState, useEffect } from 'react'
 import './App.css'
+import { HexbinDataType, SummaryDataType } from './types'
+
+
 
 function App() {
   const [isLoading, setIsLoading] = useState(false);
-  const [summaryData, setSummaryData] = useState(null);
+  const [summaryData, setSummaryData] = useState<SummaryDataType>();
 
   // one-time setup
   useEffect(() => {
@@ -32,7 +35,11 @@ function App() {
     <div className="App">
       <HeaderPanel></HeaderPanel>
       <SidePanel></SidePanel>
-      <MapPanel hexbins={(summaryData) ? summaryData['counts_by_h3']:[]}></MapPanel>
+      { summaryData ?
+        <MapPanel hexbins={summaryData['counts_by_h3']}></MapPanel>
+        :
+        <h2>data loading...</h2>
+      }
       <LineGraphPanel></LineGraphPanel>
       <FooterPanel></FooterPanel>
     </div>

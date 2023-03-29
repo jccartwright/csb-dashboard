@@ -4,10 +4,10 @@ import GraphicsLayer from "@arcgis/core/layers/GraphicsLayer"
 import Polygon from "@arcgis/core/geometry/Polygon"
 import PopupTemplate from "@arcgis/core/PopupTemplate"
 import {cellToBoundary} from "h3-js"
-import { hexbinData } from "./types"
+import { HexbinDataType } from "./types"
 
 
-export default function HexbinsLayer(graphicsLayer:GraphicsLayer, hexbins:Array<hexbinData>) {
+export default function HexbinsLayer(graphicsLayer:GraphicsLayer, hexbins:Array<HexbinDataType>) {
   const hexbinBoundaryWidth = 0
   const cellCounts = hexbins.map(item => item.count)
   const minCount = cellCounts.reduce((a,b) => Math.min(a,b))
