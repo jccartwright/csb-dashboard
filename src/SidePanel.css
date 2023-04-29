@@ -1,0 +1,6 @@
+.SidePanel {
+  grid-area: sidebar;
+  background-color: slategray;
+  /* border: 2px black solid; */
+
+}

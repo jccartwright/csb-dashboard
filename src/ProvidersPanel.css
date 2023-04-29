@@ -1,0 +1,41 @@
+.ProvidersPanel {
+  background-color: slategray;
+  color:whitesmoke;
+}
+
+.emphasis {
+  font-size: large;
+  font-weight: bold;
+}
+
+.providerName {
+  font-weight: bold;
+  font-size: small;
+  text-align: right;
+  padding-right: 5px;
+}
+
+.providerLabel {
+  font-size: small;
+  text-align: left;
+}
+
+.tableCaption {
+  font-weight: bold;
+  font-size: larger;
+}
+
+table {
+  /* border: 1px solid black; */
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.tableContainer {
+  height: 160px;
+  overflow: auto;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+

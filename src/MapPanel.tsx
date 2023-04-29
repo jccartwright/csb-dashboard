@@ -7,7 +7,7 @@ import './MapPanel.css'
 import HexbinsLayer from "./HexbinsLayer"
 import { HexbinDataType } from "./types"
 
-export default function MapPanel({hexbins}:{hexbins: HexbinDataType[]}) {
+export default function MapPanel({query}) {
   const baseClass = 'MapPanel'
   const mapDiv = useRef<HTMLDivElement>(null)
   const mapViewRef = useRef<SceneView>()
@@ -15,10 +15,11 @@ export default function MapPanel({hexbins}:{hexbins: HexbinDataType[]}) {
   const defaultCenter = [-98.5833, 39.8333]
   const defaultZoom = 4
   
-  // one-time setup
+  const hexbins = query.data?.counts_by_h3
+
+  // map setup
   useEffect(() => {
     if (! mapDiv.current) {
-      console.warn("mapDiv not yet available")
       return
     }
 
@@ -57,18 +58,23 @@ export default function MapPanel({hexbins}:{hexbins: HexbinDataType[]}) {
   }, [mapDiv.current])
   
 
-  useEffect(() => {
+  // add hexbins layer once data are available
+  useEffect(() => {    
     if (! (hexbins && graphicsLayerRef.current)) {
       // console.log('waiting on data and/or graphics layer')
       return
     }
-
     const hexbinsLayer = HexbinsLayer(graphicsLayerRef.current, hexbins)
-
+  
   }, [hexbins])
  
+
   return (
-    <div className={baseClass} ref={mapDiv}>
-    </div>
+    <>
+    <div className={baseClass} ref={mapDiv}></div>
+    { query.isLoading ? <h3>loading data...</h3> : '' }
+    { query.isError ? <p>Error: {query.error.message}</p> : '' }
+
+    </>
   )
 }

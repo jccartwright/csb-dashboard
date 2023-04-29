@@ -8,11 +8,12 @@ import { HexbinDataType } from "./types"
 
 
 export default function HexbinsLayer(graphicsLayer:GraphicsLayer, hexbins:Array<HexbinDataType>) {
+  // console.log('inside HexbinsLayer...')
   const hexbinBoundaryWidth = 0
   const cellCounts = hexbins.map(item => item.count)
   const minCount = cellCounts.reduce((a,b) => Math.min(a,b))
   const maxCount = cellCounts.reduce((a,b) => Math.max(a,b))
-
+  // console.log(cellCounts, minCount, maxCount)
   const popupTemplate = new PopupTemplate({
     title: '{h3}',
     content: formatPopupContent
