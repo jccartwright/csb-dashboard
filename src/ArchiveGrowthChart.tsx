@@ -2,11 +2,15 @@ import './ArchiveGrowthChart.css'
 import * as Plot from "@observablehq/plot";
 import { useRef, useEffect, useState } from "react";
 
-export default function ArchiveGrowthChart({ data }) {
+export default function ArchiveGrowthChart({ query }) {
   const baseClass = 'ArchiveGrowthChart'
   const plotRef = useRef<HTMLDivElement>(null)
 
+  const data = query?.data?.counts_by_year
+
   useEffect(() => {
+    if (!data) { return }
+    
     const barChart = Plot.plot({
       x: {
         type: "band",
