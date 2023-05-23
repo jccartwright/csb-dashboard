@@ -18,6 +18,8 @@ import {
   QueryClientProvider,
   UseQueryResult
 } from '@tanstack/react-query'
+// import logo from './IHO_Logo_60px.png'
+import logo from './IHO_Logo_85px.png'
 
 const queryClient = new QueryClient()
 
@@ -66,7 +68,10 @@ function HeaderPanel() {
 
   return (
     <div className={baseClass}>
-      <header><h2>HEADER</h2></header>
+       {/* <img src={logo} height='60px' align='left'></img> */}
+      <header>
+        <h2>Crowdsourced Bathymetry Pointstore Dashboard</h2>
+      </header>
     </div>
   )
 }
@@ -93,7 +98,7 @@ function FooterPanel() {
 
   return (
     <div className={baseClass}>
-      <footer><h2>FOOTER</h2></footer>
+      <footer></footer>
     </div>
   )
 }
